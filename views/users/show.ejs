@@ -1,0 +1,29 @@
+<% include ../partials/header %>
+
+<div class="fill">
+    
+    <section class="form-frame container-fluid no-gutters">
+            
+        <div class="row no-gutters">
+            
+            <div class="col" data-aos="fade-in">
+                
+            <a class="btn btn-primary btn-secondary mg-o float-right" href="/users/<%= user.id%>/edit">Edit Profile</a>
+            <h2><%= user.fullName %></h2>
+            <div class="thumbnail">
+                <!--how to make a default image display if none was uploaded?-->
+                <img class="img-fluid user-img" src="<%= user.avatar %>" alt="user profile image" onError="this.onerror=null;this.src='https://farm8.staticflickr.com/7298/8726823636_c33fd4fd24.jpg;" />
+                <p><%= user.aboutMe %></p>
+            </div>
+            
+            <a href="#" class="back" onclick="window.history.back();return false;">&laquo; Back</a>
+            
+            </div><!--/col-->
+            
+        </div><!--/row-->
+        
+    </section>
+    
+</div><!--/fill-->
+
+<% include ../partials/footer %>

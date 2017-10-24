@@ -1,0 +1,34 @@
+<% include ../partials/header %>
+
+<div class="fill">
+    
+    <section class="form-frame container-fluid no-gutters">
+            
+        <div class="row no-gutters">
+            
+            <div class="col">
+                
+                <form action="/listings/<%= listing._id %>/comments" method="POST" data-aos="fade-in">
+                    
+                    <h2 class="text-center">Write a Review for <%= listing.name %></h2>
+                    
+                    <div class="form-group">
+                        <textarea class="form-control" name="comment[text]" rows="4" placeholder="text"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-lg btn-primary btn-block">Submit!</button>
+                    </div>
+                </form>
+                
+                <a href="#" class="back" onclick="window.history.back();return false;">&laquo; Back</a>
+            
+            </div><!--/col-->
+            
+        </div><!--/row-->
+        
+    </section>
+    
+</div><!--/fill-->
+
+<% include ../partials/footer %>
+

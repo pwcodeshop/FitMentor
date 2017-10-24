@@ -1,0 +1,43 @@
+<% include ./partials/header %> 
+
+<div class="fill" id="login-page">
+    
+    <!--LOGIN FORM-->
+    <section class="form-frame container-fluid no-gutters">
+            
+        <div class="row no-gutters">
+            
+            <div class="col">
+                
+                <form role="form" class="login-form" data-aos="fade-in" action="/login" method="POST">
+                    <h2 class="text-center">Log In</h2>
+                    
+                    <div class="form-group groupingA">
+                        <label class="sr-only" for="username">Username</label>
+                        <input type="text" class="form-control" id="username" name="username" placeholder="Username" autofocus>
+                    </div>
+                    <div class="form-group groupingA">
+                        <label class="sr-only" for="password">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" value="Send">Log In</button>
+                    
+                    <div class="login-extra">
+
+                        <a href="">Forgot Password?</a>
+                        <p>Don't have an account yet?<a href="/register"> Sign Up</a></p>
+                        <p>FitMentor &copy; 2017</p>
+
+                    </div><!--/login-extra-->
+                    
+                </form>
+                
+            </div><!--/col-->
+            
+        </div><!--/row-->
+            
+    </section>
+</div>
+
+<% include ./partials/footer %> 

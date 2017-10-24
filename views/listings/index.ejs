@@ -1,0 +1,92 @@
+<% include ../partials/header %> 
+    
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h1 class="jumbotron-heading">Welcome To FitMentor!</h1>
+            <p class="lead">Find a trainer from anywhere in the world to help you reach your goals</p>
+        </div>
+    </section>
+    
+    <section class="all-listings container-fluid no-gutters">
+     
+        <div class="row no-gutters">
+             
+             <div class="col">
+                 
+                 <div class="form-group search-options">
+                    
+                    <div class="dropdown show inline">
+                        <a class="btn btn-dropdown dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Language Used
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="#">eng</a>
+                            <a class="dropdown-item" href="#">rus</a>
+                        </div>
+                    </div>
+                    
+                    <div class="dropdown show inline">
+                        <a class="btn btn-dropdown dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Your Fitness Goal
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="#">Strength</a>
+                            <a class="dropdown-item" href="#">Bulk</a>
+                            <a class="dropdown-item" href="#">Slim Down</a>
+                            <a class="dropdown-item" href="#">Mobility</a>
+                            <a class="dropdown-item" href="#">Cardio/Stamina</a>
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-primary" id="index-search">Search</button>
+                                
+                </div><!--/form-group-->
+                 
+             </div><!--/col-->
+             
+        </div><!--/row-->
+         
+        <div class="row no-gutters">
+            
+            <div class="col-md-8 ml-auto mr-auto">
+                
+                <div>
+       
+                    <% listings.forEach(function(listing){ %>
+                    
+                        <div class="regular-result pd-tb-sm" data-aos="fade-left">
+                            <div class="row no-gutters">
+                                <div class="col-md-4 thumb-wrap">
+                                    <img class="result-img" src="<%= listing.image %>">
+                                </div>
+                                
+                                <div class="col-md-8">
+                                    <div class="result-text">
+                                        
+                                        <a href="/listings/<%= listing._id %>" class="btn btn-primary float-right mg-o">More Info</a>
+                                        <h4><%= listing.name %> - <span class="light"><small>$<%= listing.price %>/month</small></span></h4>
+                                        <!--<p><i class="fa fa-star"></i> Top Rated</p>-->
+                                        <!--<p>Certified Personal Trainer</p>-->
+                                        <p class="mg-t-sm"><small><em>Member since: <%= moment(listing.createdAt).fromNow() %></em></small></p>
+                                    </div>
+                                    <div class="result-text light">
+                                        <p><%= listing.description %></p>
+                                    </div>
+                                </div>
+                            </div>
+                                
+                        </div><!--/result-->
+                        
+                    <% }); %>
+                    
+                </div>
+                
+            </div><!--/col-->
+            
+        </div><!--/row-->
+    </section>
+    
+
+<% include ../partials/footer %>
+
+<a data-scroll href="#top-of-page" id="back-to-top"><i class="fa fa-angle-double-up"></i></a>

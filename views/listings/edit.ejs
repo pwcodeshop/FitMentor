@@ -1,0 +1,42 @@
+<% include ../partials/header %>
+
+<div class="fill">
+    
+    <section class="form-frame container-fluid no-gutters">
+            
+        <div class="row no-gutters">
+            
+            <div class="col">
+                
+                <form action="/listings/<%=listing._id%>?_method=PUT" method="POST" data-aos="fade-in"> <!--need to trick the browser to do a put-->
+                
+                    <h2 class="text-center">Edit <%= listing.name %></h2>
+                
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="listingObj[name]" placeholder="Your name" value="<%= listing.name %>">
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="number" name="listingObj[price]" value="<%= listing.price %>" min="0.01" step="0.01">
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="listingObj[image]" placeholder="Listing image url" value="<%= listing.image %>">
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" name="listingObj[description]" rows="4" placeholder="About you and how you train"><%= listing.description %></textarea>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-lg btn-primary btn-block">Update</button>
+                    </div>
+                </form>
+                
+                <a href="#" class="back" onclick="window.history.back();return false;">&laquo; Back</a>
+                
+            </div><!--/col-->
+            
+        </div><!--/row-->
+        
+    </section>
+    
+</div><!--/fill-->
+
+<% include ../partials/footer %>

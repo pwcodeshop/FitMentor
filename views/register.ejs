@@ -1,0 +1,55 @@
+<% include ./partials/header %> 
+
+<div class="fill">
+    
+    <!--LOGIN FORM-->
+    <section class="form-frame container-fluid no-gutters">
+            
+        <div class="row no-gutters">
+            
+            <div class="col">
+                
+                <form role="form" class="login-form" data-aos="fade-in" action="/register" method="post">
+                    <h2 class="text-center">Sign Up for Free</h2>
+                    
+                    <div class="form-group groupingA">
+                        <input class="form-control" type="text" name="username" placeholder="username">
+                    </div>
+                    <div class="form-group groupingA">
+                        <input type="password" class="form-control" id="new_pw" name="password" placeholder="password. Minimum 8 characters" onkeyup="check()" min="8">
+                    </div>
+                    <!--<input type="password" class="form-control" id="repeat_pw" placeholder="Re-Enter Password" onkeyup="check()" min="8">-->
+                    <div class="form-group groupingA">
+                        <input class="form-control" type="text" name="fullName" placeholder="your full name">
+                    </div>
+                    <div class="form-group groupingA">
+                        <input class="form-control" type="text" name="avatar" placeholder="avatar image URL">
+                    </div>
+                    <div class="form-group groupingA">
+                        <input class="form-control" type="text" name="aboutMe" placeholder="a blurb about yourself">
+                    </div>
+                    <div class="form-group groupingA">
+                        <input class="form-control" type="text" name="adminCode" placeholder="Admin Code (FitMentor employees)">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" value="Send">Sign Up!</button><!--need more routes to have a second reg form so it's not overwhelming-->
+                    
+                    <div class="login-extra">
+
+                        <p>Already have an account?<a href="/login"> Log In</a></p>
+                        <p>By selecting 'Sign Up' you are agreeing to our <a href="" target="_blank">Terms and Conditions</a> and <a href="" target="_blank">Privacy Policy</a></p>
+                        <p>FitMentor &copy; 2017</p>
+
+                    </div><!--/login-extra-->
+                    
+                </form>
+                
+            </div><!--/col-->
+            
+        </div><!--/row-->
+            
+    </section>
+</div>
+
+
+<% include ./partials/footer %> 

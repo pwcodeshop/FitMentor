@@ -1,0 +1,166 @@
+<% include ../partials/header %>
+
+<section class="profile container-fluid no-gutters">
+    
+    <div class="row no-gutters">
+        
+        <a href="#" class="back" onclick="window.history.back();return false;">&laquo; Back</a>
+
+        <div class="col-xl-6 col-lg-8 col-md-8 col-sm-10 ml-auto mr-auto">
+            
+                <div class="profile-widget" id="profile-tabs">
+
+                    <div class="profile-tab">
+                        <a data-scroll href="#aboutListing" id="to-overview" class="tab-nav dark">About Me</a>
+                    </div>
+                    <div class="profile-tab">
+                        <a data-scroll href="#services" id="to-policy" class="tab-nav dark">Workout Programs</a>
+                    </div>
+                    <div class="profile-tab">
+                        <a data-scroll href="#reviews" id="to-pickups" class="tab-nav dark">Reviews</a>
+                    </div>
+                    
+                </div><!--/widget-->
+                
+                <div class="profile-widget profile-wrap" data-aos="fade-up">
+                    
+                    <div class="row">
+                        
+                        <div class="col-md-6">
+                            <div class="profile-logo">
+                                <img class="img-fluid" src="<%= listing.image %>" alt="main image">
+                            </div>
+                        </div><!--/col-->
+                        
+                        <div class="col-md-6">
+                            
+                            <div class="listing-header">
+                                <h1><%=listing.name%></h1>
+                                <p class="light">$<%= listing.price %>/month</p>
+                                
+                                <!--if user is author OR an admin-->
+                                <div class="mg-b-sm">
+                                    <% if(currentUser && listing.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin) { %> <!--if no current user exists then the function won't run because it's false-->
+                                        <a class="btn btn-primary btn-secondary btn-sm mg-o" href="/listings/<%= listing._id %>/edit">Edit</a>
+                                        <!--DELETE needs its own form-->
+                                        <form class="delete-form" action="/listings/<%= listing._id%>?_method=DELETE" method="POST"> <!--need the trick for delete too-->
+                                            <button class="btn btn-primary btn-delete btn-sm mg-o" type="submit">Delete</button>
+                                        </form>
+                                    <% } else {%>
+                                        <p><a class="btn btn-primary mg-o" href="" role="button" >Contact</a></p>
+                                    <% } %>
+                                </div>
+                                
+                                <a href="#" target="_blank" class="badge social instagram"><i class="fa fa-instagram"></i></a>
+                                <a href="#" target="_blank" class="badge social twitter"><i class="fa fa-twitter"></i></a>
+                                <a href="#" target="_blank" class="badge social facebook"><i class="fa fa-facebook"></i></a>
+                                <p class="mg-t-sm"><em>Member since: <%= moment(listing.createdAt).fromNow() %></em></p>
+                            </div>
+                            
+                        </div><!--/col-->
+                        
+                    </div><!--/row-->
+  
+                </div><!--/widget-->
+                
+                <div class="profile-widget" id="aboutListing" data-aos="fade-up">
+
+                    <h2 class="mg-b-sm">About Me</h2>
+                    <p class="text-block light mg-b-m"><%= listing.description %></p>
+                    
+                    <h3 class="mg-b-sm">Certifications</h3>
+                    <ol class="mg-b-m">
+                        <li><i class="fa fa-star mg-b-sm brand-pri"></i> Certified Personal Trainer</li>
+                        <li><i class="fa fa-star brand-pri"></i> Certified Clinical Nutritionist</li>
+                    </ol>
+                    
+                </div><!--/widget-->
+                
+                <div class="profile-widget" id="services" data-aos="fade-up">
+                    
+                    <div class="row width-fix no-margin">
+                        
+                        <div class="col-sm-3 no-gutter">
+                            <h2>Workout Programs</h2>
+                        </div>
+
+                        <div class="col-sm-9">
+                            <h3><span><i class="fa fa-balance-scale brand-pri"></i></span> Slim Down</h3>
+                            <p class="text-block mg-b-m">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                            
+                            <h3><span><i class="fa fa-heart brand-pri"></i></span> Cardio</h3>
+                            <p class="text-block mg-b-m">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                            
+                            <h3><span><i class="fa fa-trophy brand-pri"></i></span> Bootcamps</h3>
+                            <p class="text-block mg-b-m">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                        </div>
+                    
+                    </div><!--/row-->
+                
+                </div><!--/widget-->
+                
+                <div class="profile-widget comments" id="reviews" data-aos="fade-up">
+                    
+                        <a class="btn btn-primary mg-o float-right" href="/listings/<%= listing._id %>/comments/new">Add New Review</a>
+                        <h2>Reviews</h2>
+                        
+                        <ol class="comments-list list-unstyled">
+                            
+                            <% listing.comments.forEach(function(comment){ %>
+                            <li class="comment mg-b-m">
+                                <!--this errors out badly if user no longer exists- need to add handling-->
+                                <h4>
+                                    <em>Submitted by: 
+                                        <a href="/users/<%= listing.author.id %>"><%= listing.author.username %>
+                                        </a> - <small><%= moment(comment.createdAt).fromNow() %></small>
+                                    </em>
+                                </h4>
+                                <div class="comment-body">
+                                    <p class="text-block"><%= comment.text %></p>
+                                </div>
+                                <!--if user is author OR an admin-->
+                                <% if(currentUser && comment.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin) { %> <!--currentUser comes from line 38 app.js-->
+                                    <a class="btn btn-primary btn-secondary btn-sm mg-o"
+                                        href="/listings/<%=listing._id%>/comments/<%=comment._id%>/edit">
+                                        Edit
+                                    </a>
+                                    <form class="delete-form" action="/listings/<%=listing._id%>/comments/<%=comment._id%>?_method=DELETE" method="POST">
+                                        <input type="submit" class="btn btn-primary btn-delete btn-sm mg-o" value="Delete">
+                                    </form>
+                                <% } %>
+                                
+                            </li><!--/review-->
+                            <% }) %>
+                            
+                        </ol><!--/reviews list-->
+                    
+                </div><!--/widget-->
+                
+                <div class="profile-widget">
+                    
+                    <div class="row no-gutters">
+                        <div class="col-sm-6">
+                            <div class="pd-sm" data-aos="fade-up">
+                                <p><small>Sponsored Advertising</small></p>
+                                <a href="#"><img src="/images/affiliate-ad.jpeg" class="img-fluid" alt="medicine"></a>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="pd-sm" data-aos="fade-up">
+                                <p><small>Sponsored Advertising</small></p>
+                                <a href="#"><img src="/images/affiliate-ad.jpeg" class="img-fluid" alt="medicine"></a>
+                            </div>
+                        </div>
+                    </div>
+   
+                </div><!--/widget-->
+            
+        </div><!--/col-->
+        
+    </div><!--/row-->
+    
+</section>
+
+<% include ../partials/footer %>
+
+<a data-scroll href="#top-of-page" id="back-to-top"><i class="fa fa-angle-double-up"></i></a>
