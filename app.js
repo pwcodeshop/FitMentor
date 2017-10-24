@@ -18,7 +18,6 @@ var commentRoutes    = require("./routes/comments"),
     
 mongoose.connect(process.env.DATABASEURL);
 //mongoose.connect("mongodb://localhost/yclone_portf2");
-//mongoose.connect("mongodb://paulw:Tawtma17!@ds231715.mlab.com:31715/fitmentor");
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
@@ -30,7 +29,7 @@ app.locals.moment= require('moment');
 
 // PASSPORT CONFIGURATION
 app.use(require("express-session")({
-    secret: "Once again Rusty wins cutest dog!",
+    secret: "there is probably a safer way to store this key",
     resave: false,
     saveUninitialized: false
 }));
