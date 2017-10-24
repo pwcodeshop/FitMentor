@@ -16,8 +16,10 @@ var commentRoutes    = require("./routes/comments"),
     listingRoutes = require("./routes/listings"),
     indexRoutes      = require("./routes/index")
     
+mongoose.connect(process.env.DATABASEURL);
 //mongoose.connect("mongodb://localhost/yclone_portf2");
-mongoose.connect("mongodb://paulw:Tawtma17!@ds231715.mlab.com:31715/fitmentor");
+//mongoose.connect("mongodb://paulw:Tawtma17!@ds231715.mlab.com:31715/fitmentor");
+
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
