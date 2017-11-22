@@ -15,9 +15,9 @@ var express     = require("express"),
 var commentRoutes    = require("./routes/comments"),
     listingRoutes = require("./routes/listings"),
     indexRoutes      = require("./routes/index")
-    
+   
+console.log(process.env.DATABASEURL);    
 mongoose.connect(process.env.DATABASEURL);
-//mongoose.connect("mongodb://localhost/yclone_portf2");
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
