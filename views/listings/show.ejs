@@ -111,7 +111,7 @@
                                 <!--this errors out badly if user no longer exists- need to add handling-->
                                 <h4>
                                     <em>Submitted by: 
-                                        <a href="/users/<%= listing.author.id %>"><%= listing.author.username %>
+                                        <a href="/users/<%= comment.author.id %>"><%= comment.author.username %>
                                         </a> - <small><%= moment(comment.createdAt).fromNow() %></small>
                                     </em>
                                 </h4>
